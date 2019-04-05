@@ -1,0 +1,45 @@
+<% include ../partials/header %>
+
+<div class="container ptb-125">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h3 class="login-heading mb-4 text-center">Edit course</h3>
+            <form action="/courses/<%= results[0].id %>?_method=PUT" method="post">
+                <% if (errors.length > 0) { %>
+                <% for(var i = 0; i < errors.length; i++) { %>
+                <div class="alert alert-danger mb-15" role="alert">
+                    <%= errors[i].msg %>
+                </div>
+                <% } %>
+                <% } %>
+
+                    <div class="form-label-group">
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Name" name="name" value="<%if (inputs.length > 0) { %><%= inputs[0].name %><% }else{ %><%= results[0].name %><% } %>"required autofocus>
+                        <label for="inputUsername">Name</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Description" name="description" value="<%if (inputs.length > 0) { %><%= inputs[0].description %><% }else{ %><%= results[0].description %><% } %>"required autofocus>
+                        <label for="inputUsername">Description</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Section Id" name="section_id" value="<%if (inputs.length > 0) { %><%= inputs[0].section_id %><% }else{ %><%= results[0].section_id %><% } %>"required autofocus>
+                        <label for="inputUsername">Section Id</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Department Id" name="department_id" value="<%if (inputs.length > 0) { %><%= inputs[0].department_id %><% }else{ %><%= results[0].department_id %><% } %>"required autofocus>
+                        <label for="inputUsername">Department Id</label>
+                    </div>
+                    <div class="form-label-group">
+                        <input type="text" id="inputUsername" class="form-control" placeholder="Room Id" name="room_id" value="<%if (inputs.length > 0) { %><%= inputs[0].room_id %><% }else{ %><%= results[0].room_id %><% } %>"required autofocus>
+                        <label for="inputUsername">Room Id</label>
+                    </div>
+
+
+
+                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

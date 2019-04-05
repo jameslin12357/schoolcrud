@@ -1,0 +1,158 @@
+<% include ../partials/header %>
+
+<% if (alert.length > 0) { %>
+    <div class="alert alert-success success-alert " role="alert">
+        <span class="mr-15"><%= alert %></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% } %>
+
+<div class="container pt-100">
+<div class="row">
+    <div class="col-md-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col" class="active"><a href="/">Addresses</a></th>
+                <!--<th scope="col">First</th>-->
+                <!--<th scope="col">Last</th>-->
+                <!--<th scope="col">Handle</th>-->
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <th scope="row"><a href="/attendances">Attendances</a></th>
+                <!--<td>Mark</td>-->
+                <!--<td>Otto</td>-->
+                <!--<td>@mdo</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/courses">Courses</a></th>
+                <!--<td>Jacob</td>-->
+                <!--<td>Thornton</td>-->
+                <!--<td>@fat</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/departments">Departments</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/genders">Genders</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/rooms">Rooms</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/sections">Sections</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/students">Students</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/studentscourses">StudentsCourses</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/teachers">Teachers</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            <tr>
+                <th scope="row"><a href="/teacherscourses">TeachersCourses</a></th>
+                <!--<td>Larry</td>-->
+                <!--<td>the Bird</td>-->
+                <!--<td>@twitter</td>-->
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-9 ofx-s">
+        <h5><%= results[1][0].count %> Rows</h5>
+        <table class="table">
+            <!--<thead>-->
+            <!--<tr>-->
+                <!--<th scope="col">#</th>-->
+                <!--<th scope="col">First</th>-->
+                <!--<th scope="col">Last</th>-->
+                <!--<th scope="col">Handle</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Building Number</th>
+                <th scope="col">Street</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Country</th>
+                <th scope="col">Zip</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Date Edited</th>
+                <% if (req.user.level == 1) { %>
+                    <th scope="col"><a href="/addresses/new" class="btn btn-outline-secondary">Create</a></th>
+                <% } %>
+
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i=0; i < results[0].length; i++) { %>
+                <tr>
+                    <td><%= results[0][i].id %></td>
+                    <td><%= results[0][i].building_number %></td>
+                    <td><%= results[0][i].street %></td>
+                    <td><%= results[0][i].city %></td>
+                    <td><%= results[0][i].state %></td>
+                    <td><%= results[0][i].country %></td>
+                    <td><%= results[0][i].zip %></td>
+                    <td><%= results[0][i].date_created %></td>
+                    <td><%= results[0][i].date_edited %></td>
+                    <% if (req.user.level == 1) { %>
+                        <td>
+                            <a href="/addresses/<%= results[0][i].id %>/edit" class="btn btn-outline-secondary">Edit</a>
+                        </td>
+                        <td>
+                            <form action="/addresses/<%= results[0][i].id %>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-outline-secondary">Delete</button>
+                            </form>
+                        </td>
+                    <% } %>
+                </tr>
+
+
+
+            <% } %>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+</div>
+
+
+<% include ../partials/footer %>
